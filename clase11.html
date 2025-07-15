@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clase 11 - Apps Script para generar documentos desde Sheets</title>
+    <link rel="stylesheet" href="styles-clases.css">
+    <link rel="icon" href="cohete.png" type="image/png">
+    <meta name="description" content="Crea sistemas de generación automática de propuestas, facturas y documentos personalizados masivamente.">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Curso de IA y Google Workspace</h1>
+
+        </div>
+    </header>
+
+    <main class="container" id="main">
+        <div class="class-detail" data-class-number="11">
+            <div class="class-header">
+                <span class="class-number-detail">11</span>
+                <h2>Apps Script para generar documentos desde Sheets</h2>
+            </div>
+
+            <div class="class-content">
+                <div class="objective">
+                    <h3>Objetivo de la Clase</h3>
+                    <p>Crear sistemas automatizados de generación de documentos que tomen datos de hojas de cálculo y produzcan documentos personalizados masivamente como facturas, propuestas comerciales, cartas personalizadas y reportes. Eliminarás completamente la creación manual de documentos repetitivos y establecerás flujos de trabajo escalables para tu negocio.</p>
+                </div>
+
+                <div class="content-section">
+                    <h3>Contenido Práctico</h3>
+                    <ul class="content-list">
+                        <li><strong>Arquitectura de plantillas con marcadores dinámicos:</strong> Diseñarás plantillas en Google Docs con marcadores de posición {{nombre}}, {{precio}}, {{fecha}} que serán reemplazados automáticamente con datos específicos de cada cliente o proyecto, permitiendo personalización masiva manteniendo formato profesional consistente.</li>
+                        <li><strong>Scripts de generación automática de documentos:</strong> Desarrollarás código que lea datos desde Sheets, identifique información relevante por filas, cree documentos nuevos basados en plantillas predefinidas, reemplace marcadores con datos reales, y organice documentos generados en carpetas específicas de Drive.</li>
+                        <li><strong>Integración con APIs de Google Workspace:</strong> Implementarás conexiones entre Google Sheets, Docs y Drive usando Apps Script para automatizar flujos completos: desde captura de datos hasta entrega final de documentos, incluyendo envío automático por email cuando sea necesario.</li>
+                        <li><strong>IA como generador de código personalizado:</strong> Utilizarás IA para adaptar scripts según tus necesidades específicas de negocio, generar código para diferentes tipos de documentos, explicar lógica compleja de automatización, y crear sistemas personalizados que se ajusten a tu industria particular.</li>
+                        <li><strong>Sistemas de control de calidad y validación:</strong> Implementarás verificaciones automáticas que validen datos antes de generar documentos, detecten errores comunes, mantengan logs de documentos creados, y proporcionen reportes de actividad para seguimiento y auditoría.</li>
+                    </ul>
+                </div>
+
+                <div class="content-section">
+                    <h3>Ejercicios Prácticos</h3>
+                    <div class="exercise-grid">
+                        <div class="exercise-item">
+                            <h4>📄 Ejercicio 1: Generador de Propuestas Comerciales</h4>
+                            <p><strong>Sistema completo de propuestas:</strong> Crear plantilla en Google Docs con marcadores para datos del cliente, servicios ofrecidos, precios y términos. Desarrollar script que tome datos de Sheet y genere propuestas personalizadas automáticamente.</p>
+                            <div class="script-example">
+                                <h4>Script de generación de documentos:</h4>
+                                <pre class="code">
+function generarPropuestas() {
+  // IDs de plantilla y carpeta destino
+  const plantillaId = 'TU_ID_DE_PLANTILLA';
+  const carpetaId = 'TU_ID_DE_CARPETA';
+  
+  // Obtener datos de la hoja
+  const hoja = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+  const datos = hoja.getDataRange().getValues();
+  
+  // Procesar cada fila (saltar encabezados)
+  for (let i = 1; i < datos.length; i++) {
+    const cliente = datos[i][0];
+    const empresa = datos[i][1];  
+    const servicio = datos[i][2];
+    const precio = datos[i][3];
+    const fecha = new Date().toLocaleDateString();
+    
+    // Crear copia de plantilla
+    const plantilla = DriveApp.getFileById(plantillaId);
+    const nuevaPlantilla = plantilla.makeCopy(`Propuesta_${empresa}_${fecha}`);
+    
+    // Mover a carpeta específica
+    const carpeta = DriveApp.getFolderById(carpetaId);
+    carpeta.addFile(nuevaPlantilla);
+    DriveApp.getRootFolder().removeFile(nuevaPlantilla);
+    
+    // Abrir documento y reemplazar marcadores
+    const doc = DocumentApp.openById(nuevaPlantilla.getId());
+    const body = doc.getBody();
+    
+    body.replaceText('{{cliente}}', cliente);
+    body.replaceText('{{empresa}}', empresa);
+    body.replaceText('{{servicio}}', servicio);
+    body.replaceText('{{precio}}', `Q${precio.toLocaleString()}`);
+    body.replaceText('{{fecha}}', fecha);
+    
+    doc.saveAndClose();
+  }
+  
+  SpreadsheetApp.getUi().alert('Propuestas generadas exitosamente');
+}
+                                </pre>
+                            </div>
+                        </div>
+                        
+                        <div class="exercise-item">
+                            <h4>🧾 Ejercicio 2: Sistema de Facturación Automática</h4>
+                            <p><strong>Generador de facturas profesionales:</strong> Crear sistema que genere facturas con numeración automática, cálculo de impuestos, términos de pago, y detalles de productos/servicios basados en datos de ventas en Sheets.</p>
+                            <p><strong>Características avanzadas:</strong> Validación de datos antes de generar, formato de moneda guatemalteca, cálculo automático de IVA del 12%, y archivo en carpetas organizadas por mes y cliente.</p>
+                        </div>
+                        
+                        <div class="exercise-item">
+                            <h4>✉️ Ejercicio 3: Cartas Personalizadas Masivas</h4>
+                            <p><strong>Mail merge avanzado:</strong> Desarrollar sistema para crear cartas personalizadas (agradecimiento, cobranza, promocionales) que incluyan información específica de cada destinatario y se organicen automáticamente por tipo o fecha.</p>
+                        </div>
+                        
+                        <div class="exercise-item">
+                            <h4>📊 Ejercicio 4: Generador de Reportes Automáticos</h4>
+                            <p><strong>Reportes dinámicos:</strong> Crear sistema que genere reportes mensuales o semanales con gráficos, métricas, análisis de tendencias, y recomendaciones basadas en datos actualizados de Sheets.</p>
+                        </div>
+                        
+                        <div class="exercise-item">
+                            <h4>🎓 Ejercicio 5: Certificados Digitales Automáticos</h4>
+                            <p><strong>Sistema de certificación:</strong> Desarrollar generador de certificados para cursos, eventos, o logros que personalice nombres, fechas, niveles, y firmas digitales automáticamente desde lista de participantes.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product">
+                    <h3>Producto Final de la Clase</h3>
+                    <p><strong>Suite completa de automatización documental:</strong> (1) Sistema de generación de propuestas comerciales con plantillas personalizables y datos dinámicos, (2) Generador automático de facturas con numeración secuencial y cálculos de impuestos, (3) Herramienta de mail merge para cartas masivas personalizadas, (4) Dashboard de control que muestre documentos generados, fechas, y destinatarios, (5) Manual técnico con IA explicando cada script y cómo modificarlo, y (6) Biblioteca de 10 plantillas reutilizables para diferentes tipos de documentos empresariales.</p>
+                </div>
+
+                <div class="resources">
+                    <h3>Materiales de la Clase</h3>
+                    <a href="#" class="resource-link" target="_blank">
+                        <span class="btn-icon">📊</span>
+                        Ver presentación completa
+                    </a>
+                    
+                    <div class="presentation-preview">
+                        <h4>Vista previa de la presentación</h4>
+                        <div class="iframe-container">
+                            <iframe src="#" frameborder="0" allowfullscreen loading="lazy"></iframe>
+                        </div>
+                    </div>
+
+                    <div class="additional-materials">
+                        <h4>📚 Material Adicional y Recursos Complementarios</h4>
+                        
+                        <div class="material-category">APIs de Google Workspace</div>
+                        <div class="material-links">
+                            <a href="https://developers.google.com/docs/api" class="material-link" target="_blank">
+                                <span class="material-link-icon">📄</span>
+                                <div>
+                                    <strong>Google Docs API</strong><br>
+                                    <small>Documentación completa para manipulación avanzada de documentos y plantillas programáticamente.</small>
+                                </div>
+                            </a>
+                            <a href="https://developers.google.com/drive/api" class="material-link" target="_blank">
+                                <span class="material-link-icon">📁</span>
+                                <div>
+                                    <strong>Google Drive API</strong><br>
+                                    <small>Gestión de archivos, carpetas, permisos y organización automática de documentos generados.</small>
+                                </div>
+                            </a>
+                            <a href="https://developers.google.com/gmail/api" class="material-link" target="_blank">
+                                <span class="material-link-icon">📧</span>
+                                <div>
+                                    <strong>Gmail API</strong><br>
+                                    <small>Envío automático de documentos generados por email con archivos adjuntos.</small>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="material-category">Plantillas de Documentos Empresariales</div>
+                        <div class="material-links">
+                            <a href="#" class="material-link" target="_blank">
+                                <span class="material-link-icon">💼</span>
+                                <div>
+                                    <strong>Propuestas Comerciales Profesionales</strong><br>
+                                    <small>Templates con marcadores para servicios, precios, términos y condiciones legales.</small>
+                                </div>
+                            </a>
+                            <a href="#" class="material-link" target="_blank">
+                                <span class="material-link-icon">🧾</span>
+                                <div>
+                                    <strong>Facturas con Formato Legal Guatemalteco</strong><br>
+                                    <small>Plantillas que cumplen requisitos fiscales locales con cálculos automáticos de IVA.</small>
+                                </div>
+                            </a>
+                            <a href="#" class="material-link" target="_blank">
+                                <span class="material-link-icon">📋</span>
+                                <div>
+                                    <strong>Contratos y Acuerdos Legales</strong><br>
+                                    <small>Templates para contratos de servicios, acuerdos de confidencialidad y términos comerciales.</small>
+                                </div>
+                            </a>
+                            <a href="#" class="material-link" target="_blank">
+                                <span class="material-link-icon">🎓</span>
+                                <div>
+                                    <strong>Certificados y Diplomas</strong><br>
+                                    <small>Plantillas elegantes para certificaciones, diplomas y reconocimientos profesionales.</small>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="material-category">Herramientas de Desarrollo Avanzado</div>
+                        <div class="material-links">
+                            <a href="https://script.google.com/home/triggers" class="material-link" target="_blank">
+                                <span class="material-link-icon">⏰</span>
+                                <div>
+                                    <strong>Triggers Automáticos</strong><br>
+                                    <small>Configuración de ejecución automática de scripts basada en eventos o horarios.</small>
+                                </div>
+                            </a>
+                            <a href="https://developers.google.com/apps-script/guides/libraries" class="material-link" target="_blank">
+                                <span class="material-link-icon">📚</span>
+                                <div>
+                                    <strong>Libraries de Apps Script</strong><br>
+                                    <small>Librerías reutilizables para funcionalidades comunes en automatización de documentos.</small>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="material-category">Videos Tutoriales Especializados</div>
+                        <div class="material-links">
+                            <a href="https://www.youtube.com/watch?v=Nd3DKreNJII" class="material-link" target="_blank">
+                                <span class="material-link-icon">🎥</span>
+                                <div>
+                                    <strong>Document Generation with Apps Script</strong><br>
+                                    <small>Tutorial completo sobre automatización de documentos desde hojas de cálculo</small>
+                                </div>
+                            </a>
+                            <a href="https://www.youtube.com/watch?v=8OXAOSQ4nSs" class="material-link" target="_blank">
+                                <span class="material-link-icon">📄</span>
+                                <div>
+                                    <strong>Advanced Google Docs Automation</strong><br>
+                                    <small>Técnicas avanzadas para manipular documentos programáticamente con Google Apps Script</small>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="material-category">Ejemplos de Código Avanzado</div>
+                        <div class="material-links">
+                            <a href="#" class="material-link" target="_blank">
+                                <span class="material-link-icon">🔧</span>
+                                <div>
+                                    <strong>Scripts de Validación de Datos</strong><br>
+                                    <small>Código para verificar integridad de datos antes de generar documentos masivamente.</small>
+                                </div>
+                            </a>
+                            <a href="#" class="material-link" target="_blank">
+                                <span class="material-link-icon">📊</span>
+                                <div>
+                                    <strong>Generador de Gráficos Automáticos</strong><br>
+                                    <small>Scripts para insertar gráficos dinámicos en documentos basados en datos de Sheets.</small>
+                                </div>
+                            </a>
+                            <a href="#" class="material-link" target="_blank">
+                                <span class="material-link-icon">🔐</span>
+                                <div>
+                                    <strong>Sistema de Permisos y Seguridad</strong><br>
+                                    <small>Código para gestionar acceso y permisos en documentos generados automáticamente.</small>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="navigation">
+                <a href="index.html" class="nav-btn back-home">🏠 Volver al inicio</a>
+                <div class="nav-controls">
+                    <a href="clase10.html" class="nav-btn prev-class">← Clase 10</a>
+                    <a href="clase12.html" class="nav-btn next-class">Clase 12 →</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+        <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>Curso de IA y Google Workspace</h3>
+                    <p>Aprende a integrar inteligencia artificial en tu flujo de trabajo diario con herramientas prácticas y aplicables.</p>
+                    <p><strong>Instructor:</strong> Benitez Simón | <strong>Guatemala, 2025</strong></p>
+                </div>
+                
+                <div class="footer-contact">
+                    <a href="https://api.whatsapp.com/send/?phone=50239914218&text&type=phone_number&app_absent=0" class="footer-btn whatsapp" target="_blank">
+                        <span>📱</span> WhatsApp
+                    </a>
+                    <a href="https://calendar.app.google/ikcMVqwjfwpUkjZs5" class="footer-btn calendar" target="_blank">
+                        <span>📅</span> Reservar
+                    </a>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>© 2025 - Diseñado con ❤️ por <span class="author"><strong>Benitez Simón</strong></span></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

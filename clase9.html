@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clase 9 - Creatividad e IA + Introducción a Apps Script</title>
+    <link rel="stylesheet" href="styles-clases.css">
+    <link rel="icon" href="cohete.png" type="image/png">
+
+    <meta name="description" content="Desata tu creatividad con IA y da tus primeros pasos en automatización con Google Apps Script.">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Curso de IA y Google Workspace</h1>
+
+        </div>
+    </header>
+
+    <main class="container" id="main">
+        <div class="class-detail" data-class-number="9">
+            <div class="class-header">
+                <span class="class-number-detail">9</span>
+                <h2>Creatividad e IA + Introducción a Apps Script</h2>
+            </div>
+
+            <div class="class-content">
+                <div class="objective">
+                    <h3>Objetivo de la Clase</h3>
+                    <p>Expandir tu potencial creativo utilizando IA para generar contenido innovador, diseños visuales y soluciones artísticas, mientras introduces conceptos fundamentales de Google Apps Script para automatización básica. Aprenderás a combinar creatividad asistida por IA con programación simple para crear herramientas útiles y contenido único.</p>
+                </div>
+
+                <div class="content-section">
+                    <h3>Contenido Práctico</h3>
+                    <ul class="content-list">
+                        <li><strong>IA para generación creativa multidisciplinaria:</strong> Dominarás técnicas para crear contenido textual original (historias, poemas, guiones), generar ideas innovadoras para proyectos artísticos, desarrollar conceptos de branding y marketing creativo, y producir contenido para redes sociales que capture atención y genere engagement.</li>
+                        <li><strong>Creación visual y multimedia con IA:</strong> Aprenderás a generar imágenes conceptuales y artísticas, crear logotipos y elementos de diseño básico, producir contenido visual para presentaciones y marketing, y combinar diferentes elementos visuales para comunicación efectiva.</li>
+                        <li><strong>Introducción práctica a Google Apps Script:</strong> Comprenderás qué es Apps Script y cómo acceder al editor desde Google Sheets, aprenderás la estructura básica de un script con sintaxis de JavaScript, implementarás tu primer script funcional para automatización simple, y utilizarás IA para explicar y modificar código existente.</li>
+                        <li><strong>Automatización básica con scripts simples:</strong> Crearás scripts para limpiar y organizar datos automáticamente, automatizar tareas repetitivas en hojas de cálculo, generar reportes simples con formato predefinido, y ejecutar acciones programadas en Google Workspace.</li>
+                        <li><strong>IA como asistente de programación:</strong> Utilizarás IA para explicar código línea por línea, generar scripts simples según tus necesidades específicas, debuggear errores comunes de programación, y adaptar código existente para diferentes casos de uso.</li>
+                    </ul>
+                </div>
+
+                <div class="content-section">
+                    <h3>Ejercicios Prácticos</h3>
+                    <div class="exercise-grid">
+                        <div class="exercise-item">
+                            <h4>🎨 Ejercicio 1: Campaña Creativa Completa</h4>
+                            <p><strong>Proyecto multimedia:</strong> Crear una campaña de marketing para un producto guatemalteco usando IA para: (1) Generar eslogan creativo y llamativo, (2) Crear descripción persuasiva del producto, (3) Desarrollar 5 posts para redes sociales con diferentes enfoques, (4) Generar ideas para video promocional, (5) Diseñar concepto visual básico.</p>
+                            <p><strong>Prompt para eslogan:</strong> "Crea 10 eslóganes creativos y memorables para [tu producto guatemalteco]. Que sean auténticos, reflejen la cultura local, y generen deseo de compra. Incluye juegos de palabras inteligentes."</p>
+                        </div>
+                        
+                        <div class="exercise-item">
+                            <h4>💻 Ejercicio 2: Primer Script de Automatización</h4>
+                            <p><strong>Script básico de limpieza:</strong> Crear y ejecutar el siguiente script en Google Sheets que limpia datos automáticamente:</p>
+                            <div class="script-example">
+                                <h4>Código a implementar:</h4>
+                                <pre class="code">
+function limpiarDatos() {
+  // Obtener la hoja activa
+  const hoja = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+  
+  // Limpiar contenido de rango específico
+  hoja.getRange("A2:D").clearContent();
+  
+  // Añadir timestamp de limpieza
+  hoja.getRange("A1").setValue("Limpiado el: " + new Date());
+  
+  // Mostrar mensaje de confirmación
+  SpreadsheetApp.getUi().alert("Datos limpiados exitosamente");
+}
+                                </pre>
+                            </div>
+                            <p><strong>Consulta a IA:</strong> "Explícame línea por línea qué hace este código de Apps Script y cómo puedo modificarlo para limpiar un rango diferente de celdas."</p>
+                        </div>
+                        
+                        <div class="exercise-item">
+                            <h4>🖼️ Ejercicio 3: Generación Visual Creativa</h4>
+                            <p><strong>Crear contenido visual:</strong> Usar IA para generar descripciones detalladas de imágenes que luego puedas crear con herramientas como DALL-E o Midjourney: (1) Logo para emprendimiento guatemalteco, (2) Infografía conceptual sobre reciclaje, (3) Ilustración para portada de presentación, (4) Diseño de empaque para producto local.</p>
+                        </div>
+                        
+                        <div class="exercise-item">
+                            <h4>📝 Ejercicio 4: Escritura Creativa Asistida</h4>
+                            <p><strong>Contenido original:</strong> Crear con IA: (1) Historia corta de 500 palabras ambientada en Guatemala, (2) Poema sobre emprendimiento y perseverancia, (3) Guión para video promocional de 2 minutos, (4) Artículo de blog sobre innovación tecnológica local.</p>
+                        </div>
+                        
+                        <div class="exercise-item">
+                            <h4>⚡ Ejercicio 5: Script Personalizado con IA</h4>
+                            <p><strong>Automatización a medida:</strong> Solicitar a IA que genere un script simple para una necesidad específica tuya (ordenar datos, calcular comisiones, enviar emails automáticos). Implementar el script, probarlo, y documentar cómo funciona.</p>
+                            <p><strong>Ejemplo de prompt:</strong> "Necesito un Apps Script que tome los datos de ventas de la columna B y calcule automáticamente la comisión del 15% en la columna C. Explica el código paso a paso."</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product">
+                    <h3>Producto Final de la Clase</h3>
+                    <p><strong>Portfolio creativo y técnico:</strong> (1) Campaña de marketing completa con elementos visuales y textuales creados con IA, (2) Colección de 3 scripts de Apps Script funcionando con documentación explicativa, (3) Banco de 20 prompts creativos probados para diferentes tipos de contenido, (4) Guía personal de "IA como asistente de programación" con ejemplos prácticos, y (5) Plan de automatización identificando 5 tareas repetitivas de tu trabajo que podrías automatizar con scripts.</p>
+                </div>
+
+                <div class="resources">
+                    <h3>Materiales de la Clase</h3>
+                    <a href="#" class="resource-link" target="_blank">
+                        <span class="btn-icon">📊</span>
+                        Ver presentación completa
+                    </a>
+                    
+                    <div class="presentation-preview">
+                        <h4>Vista previa de la presentación</h4>
+                        <div class="iframe-container">
+                            <iframe src="#" frameborder="0" allowfullscreen loading="lazy"></iframe>
+                        </div>
+                    </div>
+
+                    <div class="additional-materials">
+                        <h4>📚 Material Adicional y Recursos Complementarios</h4>
+                        
+                        <div class="material-category">Herramientas Creativas con IA</div>
+                        <div class="material-links">
+                            <a href="https://www.midjourney.com" class="material-link" target="_blank">
+                                <span class="material-link-icon">🎨</span>
+                                <div>
+                                    <strong>Midjourney</strong><br>
+                                    <small>Generador de imágenes artísticas de alta calidad, ideal para conceptos creativos y arte digital.</small>
+                                </div>
+                            </a>
+                            <a href="https://openai.com/dall-e-3" class="material-link" target="_blank">
+                                <span class="material-link-icon">🖼️</span>
+                                <div>
+                                    <strong>DALL-E 3</strong><br>
+                                    <small>IA de OpenAI para generar imágenes realistas y artísticas desde descripciones de texto.</small>
+                                </div>
+                            </a>
+                            <a href="https://runwayml.com" class="material-link" target="_blank">
+                                <span class="material-link-icon">🎬</span>
+                                <div>
+                                    <strong>RunwayML</strong><br>
+                                    <small>Plataforma para creación de videos, efectos visuales y contenido multimedia con IA.</small>
+                                </div>
+                            </a>
+                            <a href="https://mubert.com" class="material-link" target="_blank">
+                                <span class="material-link-icon">🎵</span>
+                                <div>
+                                    <strong>Mubert</strong><br>
+                                    <small>Generador de música y audio con IA para contenido creativo y comercial.</small>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="material-category">Recursos de Google Apps Script</div>
+                        <div class="material-links">
+                            <a href="https://developers.google.com/apps-script" class="material-link" target="_blank">
+                                <span class="material-link-icon">📚</span>
+                                <div>
+                                    <strong>Google Apps Script Documentation</strong><br>
+                                    <small>Documentación oficial completa con guías, referencias y ejemplos para principiantes.</small>
+                                </div>
+                            </a>
+                            <a href="https://script.google.com/home" class="material-link" target="_blank">
+                                <span class="material-link-icon">💻</span>
+                                <div>
+                                    <strong>Apps Script Editor</strong><br>
+                                    <small>Editor web oficial para crear, editar y ejecutar scripts de Google Apps Script.</small>
+                                </div>
+                            </a>
+                            <a href="https://developers.google.com/apps-script/samples" class="material-link" target="_blank">
+                                <span class="material-link-icon">🧩</span>
+                                <div>
+                                    <strong>Apps Script Sample Gallery</strong><br>
+                                    <small>Galería de ejemplos y plantillas de código para diferentes casos de uso comunes.</small>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="material-category">Plantillas de Código y Ejemplos</div>
+                        <div class="material-links">
+                            <a href="#" class="material-link" target="_blank">
+                                <span class="material-link-icon">🔧</span>
+                                <div>
+                                    <strong>Scripts Básicos para Principiantes</strong><br>
+                                    <small>Colección de 10 scripts simples comentados: limpiar datos, ordenar información, calcular totales.</small>
+                                </div>
+                            </a>
+                            <a href="#" class="material-link" target="_blank">
+                                <span class="material-link-icon">📝</span>
+                                <div>
+                                    <strong>Librería de Funciones Útiles</strong><br>
+                                    <small>Banco de funciones reutilizables para tareas comunes en Sheets y Docs.</small>
+                                </div>
+                            </a>
+                            <a href="#" class="material-link" target="_blank">
+                                <span class="material-link-icon">🐛</span>
+                                <div>
+                                    <strong>Guía de Debugging</strong><br>
+                                    <small>Cómo identificar y resolver errores comunes en Apps Script con ejemplos prácticos.</small>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="material-category">Herramientas de Desarrollo</div>
+                        <div class="material-links">
+                            <a href="https://console.cloud.google.com" class="material-link" target="_blank">
+                                <span class="material-link-icon">☁️</span>
+                                <div>
+                                    <strong>Google Cloud Console</strong><br>
+                                    <small>Panel de administración avanzada para proyectos de Apps Script y APIs de Google.</small>
+                                </div>
+                            </a>
+                            <a href="https://github.com" class="material-link" target="_blank">
+                                <span class="material-link-icon">📂</span>
+                                <div>
+                                    <strong>GitHub</strong><br>
+                                    <small>Plataforma para gestionar versiones de tus scripts y colaborar con otros desarrolladores.</small>
+                                </div>
+                            </a>
+                            <a href="https://jsfiddle.net" class="material-link" target="_blank">
+                                <span class="material-link-icon">🧪</span>
+                                <div>
+                                    <strong>JSFiddle</strong><br>
+                                    <small>Editor online para probar código JavaScript antes de implementarlo en Apps Script.</small>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="material-category">Videos Tutoriales Especializados</div>
+                        <div class="material-links">
+                            <a href="https://www.youtube.com/watch?v=RgKF87Uw4Sc" class="material-link" target="_blank">
+                                <span class="material-link-icon">🎥</span>
+                                <div>
+                                    <strong>Google Apps Script Complete Course</strong><br>
+                                    <small>Curso completo desde cero hasta nivel intermedio con proyectos prácticos - 4 horas</small>
+                                </div>
+                            </a>
+                            <a href="https://www.youtube.com/watch?v=c8nKXmSUJTo" class="material-link" target="_blank">
+                                <span class="material-link-icon">⚡</span>
+                                <div>
+                                    <strong>Apps Script Automation Examples</strong><br>
+                                    <small>10 ejemplos prácticos de automatización para uso diario con Google Workspace</small>
+                                </div>
+                            </a>
+                            <a href="https://www.youtube.com/watch?v=o1B0JMg9aOQ" class="material-link" target="_blank">
+                                <span class="material-link-icon">🤖</span>
+                                <div>
+                                    <strong>AI-Powered Creativity Techniques</strong><br>
+                                    <small>Cómo usar IA para potenciar tu creatividad en diseño, escritura y contenido digital</small>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="material-category">Comunidades y Soporte</div>
+                        <div class="material-links">
+                            <a href="https://stackoverflow.com/questions/tagged/google-apps-script" class="material-link" target="_blank">
+                                <span class="material-link-icon">💬</span>
+                                <div>
+                                    <strong>Stack Overflow - Apps Script</strong><br>
+                                    <small>Comunidad de desarrolladores para resolver dudas específicas sobre Apps Script.</small>
+                                </div>
+                            </a>
+                            <a href="https://www.reddit.com/r/GoogleAppsScript/" class="material-link" target="_blank">
+                                <span class="material-link-icon">🗨️</span>
+                                <div>
+                                    <strong>r/GoogleAppsScript</strong><br>
+                                    <small>Subreddit dedicado a compartir scripts, resolver problemas y discutir mejores prácticas.</small>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="material-category">Inspiración Creativa</div>
+                        <div class="material-links">
+                            <a href="https://www.behance.net" class="material-link" target="_blank">
+                                <span class="material-link-icon">🎨</span>
+                                <div>
+                                    <strong>Behance</strong><br>
+                                    <small>Plataforma de inspiración visual con proyectos creativos de diseñadores globales.</small>
+                                </div>
+                            </a>
+                            <a href="https://dribbble.com" class="material-link" target="_blank">
+                                <span class="material-link-icon">🎯</span>
+                                <div>
+                                    <strong>Dribbble</strong><br>
+                                    <small>Comunidad de diseñadores para descubrir tendencias y técnicas creativas actuales.</small>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="navigation">
+                <a href="index.html" class="nav-btn back-home">🏠 Volver al inicio</a>
+                <div class="nav-controls">
+                    <a href="clase8.html" class="nav-btn prev-class">← Clase 8</a>
+                    <a href="clase10.html" class="nav-btn next-class">Clase 10 →</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+        <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>Curso de IA y Google Workspace</h3>
+                    <p>Aprende a integrar inteligencia artificial en tu flujo de trabajo diario con herramientas prácticas y aplicables.</p>
+                    <p><strong>Instructor:</strong> Benitez Simón | <strong>Guatemala, 2025</strong></p>
+                </div>
+                
+                <div class="footer-contact">
+                    <a href="https://api.whatsapp.com/send/?phone=50239914218&text&type=phone_number&app_absent=0" class="footer-btn whatsapp" target="_blank">
+                        <span>📱</span> WhatsApp
+                    </a>
+                    <a href="https://calendar.app.google/ikcMVqwjfwpUkjZs5" class="footer-btn calendar" target="_blank">
+                        <span>📅</span> Reservar
+                    </a>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>© 2025 - Diseñado con ❤️ por <span class="author"><strong>Benitez Simón</strong></span></p>
+            </div>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
